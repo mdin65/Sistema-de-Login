@@ -15,12 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DatosLoginTest {
 
     @Test
-    public void testMetodoPrivado() throws Exception {
-        DatosLogin datos = new DatosLogin();
-        Method metodo = DatosLogin.class.getDeclaredMethod("cargarUsuarios", String.class);
-        metodo.setAccessible(true);
-        metodo.invoke(datos, "ruta/inexistente.txt");
+    public void testArchivoNoEncontrado() {
+        DatosLogin clase = new DatosLogin(); // reemplaza con el nombre real
+
+        assertThrows(IOException.class, () -> {
+            clase.cargarUsuarios("ruta/que/no/existe.txt");
+        });
     }
+
 
     @Test
     public void testUsuariosRepetidosLanzanExcepcion() {
